@@ -1,18 +1,53 @@
-/api/menu-items/
+# API Documentation
 
-# Endpoint para obtener la data de un item en particular del menu
-/api/menu-items/<int>[id_menu]
+## Menu Items
 
-/api/tables/
+- **GET** `/api/menu-items/`
+  - **Description**: Retrieve a list of all menu items.
+  - **Authorization**: None.
 
-# Endpoint que requiere autenticación de token
-/api/messages/
+- **GET** `/api/menu-items/<int:id_menu>/`
+  - **Description**: Retrieve detailed information about a specific menu item identified by `id_menu`.
+  - **Parameters**: 
+    - `id_menu`: The unique identifier of the menu item.
+  - **Authorization**: None.
 
-# Endpoint para iniciar sesión y obtener el token
-/auth/token/login
+## Reservations
 
-# Endpoint para registrarse
-/auth/users/
+- **GET** `/api/tables/`
+  - **Description**: Retrieve a list of all reservations.
+  - **Authorization**: Token required.
 
-# Endpoint para cerrar sesión del usuario
-/auth/token/logout/
+## Authentication
+
+- **POST** `/auth/token/login/`
+  - **Description**: Authenticate a user and obtain an authentication token.
+  - **Body**: 
+    - `username`: The username of the user.
+    - `password`: The password of the user.
+  - **Authorization**: None.
+
+- **POST** `/auth/users/`
+  - **Description**: Register a new user.
+  - **Body**: 
+    - `username`: The username for the new user.
+    - `password`: The password for the new user.
+    - `email`: The email address of the new user.
+  - **Authorization**: None.
+
+- **POST** `/auth/token/logout/`
+  - **Description**: Log out the user by deleting the authentication token.
+  - **Authorization**: Token required.
+
+## Authentication Token Usage
+
+To access endpoints that require authentication, include the token in the request header:
+
+- **Header**: 
+  - `Authorization`: `Token <your_token_here>`
+
+## Example Requests
+
+**Getting Menu Items:**
+```http
+GET /api/menu-items/
