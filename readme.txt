@@ -1,0 +1,2 @@
+/api/menu/
+/api/tables/
